@@ -22,8 +22,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Prepare site
+        run: |
+          mkdir -p _site/zhangda
+          cp index.html _site/
+          cp -R jieyan _site/
+          cp -R sites/zaozao-zhangda/dist/. _site/zhangda/
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
